@@ -52,4 +52,14 @@ public class UserService {
 	public List<User> selectMany() {
 		return dao.selectMany();
 	}
+	
+	/**
+	 * 1件取得用
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public User selectOne(String userId) {
+		return dao.selectOne(userId);
+	}
 }

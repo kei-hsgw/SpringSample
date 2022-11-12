@@ -29,7 +29,7 @@
         <td th:text="${user.age}"></td>
         <td th:text="${user.marriage} ? '既婚' : '未婚'"></td>
         <td>
-          <a th:href="@{/userDetail?userId=} + ${user.userId}" class="btn btn-primary">詳細</a>
+          <a th:href="@{/userDetail/} + ${user.userId}" class="btn btn-primary">詳細</a>
         </td>
       </tr>
     </table>
