@@ -1,6 +1,9 @@
 package com.example.login.domain.repository.jdbc;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -21,8 +24,8 @@ public class UserDaoJdbcImpl implements UserDao {
 	 */
 	@Override
 	public int count() throws DataAccessException {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
+		int count = jdbc.queryForObject("SELECT COUNT(*) FROM m_user", Integer.class);
+		return count;
 	}
 
 	/**
@@ -50,8 +53,24 @@ public class UserDaoJdbcImpl implements UserDao {
 	 */
 	@Override
 	public List<User> selectMany() throws DataAccessException {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		List<Map<String, Object>> getList = jdbc.queryForList("SELECT user_id, password, user_name, birthday, age, marriage, role FROM m_user");
+		
+		// 結果返却用の変数
+		List<User> userList = new ArrayList<>();
+		
+		// 取得したデータを結果返却用のListに格納
+		for (Map<String, Object> map : getList) {
+			User user = new User();
+			user.setUserId((String) map.get("user_id"));
+			user.setPassword((String) map.get("password"));
+			user.setUserName((String) map.get("user_name"));
+			user.setBirthday((Date) map.get("birthday"));
+			user.setAge((int) map.get("age"));
+			user.setMarriage((boolean) map.get("marriage"));
+			user.setRole((String) map.get("role"));
+			userList.add(user);
+		}
+		return userList;
 	}
 
 	/**

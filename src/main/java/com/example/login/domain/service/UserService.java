@@ -1,5 +1,7 @@
 package com.example.login.domain.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,12 @@ public class UserService {
 	@Autowired
 	UserDao dao;
 	
+	/**
+	 * insert用
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public boolean insert(User user) {
 		
 		// insert実行
@@ -25,5 +33,23 @@ public class UserService {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * カウント用
+	 * 
+	 * @return
+	 */
+	public int count() {
+		return dao.count();
+	}
+	
+	/**
+	 * 全件取得用
+	 * 
+	 * @return
+	 */
+	public List<User> selectMany() {
+		return dao.selectMany();
 	}
 }
