@@ -30,8 +30,10 @@ public class UserDaoJdbcImpl implements UserDao {
 	 */
 	@Override
 	public int insertOne(User user) throws DataAccessException {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
+		int rowNumber = jdbc.update("INSERT INTO m_user (user_id, password, user_name, birthday, age, marriage, role)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?)"
+				, user.getUserId(), user.getPassword(), user.getUserName(), user.getBirthday(), user.getAge(), user.isMarriage(), user.getRole());
+		return rowNumber;
 	}
 
 	/**
