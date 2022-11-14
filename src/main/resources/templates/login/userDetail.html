@@ -15,7 +15,7 @@
         <div class="page-header">
           <h1>ユーザー詳細</h1>
         </div>
-        <form th:action="userDetail" method="post" th:object="${signupForm}">
+        <form th:action="@{/userDetail}" method="post" th:object="${signupForm}">
           <table class="table table-bordered table-hover">
             <tr>
               <!-- ユーザーID(入力不可) -->

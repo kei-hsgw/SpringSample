@@ -86,6 +86,27 @@ public class HomeController {
 		return "login/homeLayout";
 	}
 	
+	@PostMapping(value = "/userDetail", params = "update")
+	public String postUserDetailUpdate(@ModelAttribute SignupForm signupForm, Model model) {
+		
+		System.out.println("更新ボタンの処理");
+		
+		User user = new User();
+		// 値をコピー(signupForm → user)
+		BeanUtils.copyProperties(signupForm, user);
+		
+		// 更新実行
+		boolean result = userservice.updateOne(user);
+		
+		if (result == true) {
+			model.addAttribute("result", "更新成功");
+		} else {
+			model.addAttribute("result", "更新失敗");
+		}
+		
+		return getUserList(model);
+	}
+	
 	@PostMapping("/logout")
 	public String postLogout() {
 		return "redirect:/login";
