@@ -11,15 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.login.domain.model.User;
 import com.example.login.domain.repository.UserDao;
 
+@Transactional
 @Service
 public class UserService {
 
 	@Autowired
-	@Qualifier("UserDaoNamedJdbcImpl")  // どのBeanを使用するかを指定する(インターフェースを継承したクラスが複数ある場合)
+	@Qualifier("UserDaoJdbcImpl")  // どのBeanを使用するかを指定する(インターフェースを継承したクラスが複数ある場合)
 	UserDao dao;
 	
 	/**
