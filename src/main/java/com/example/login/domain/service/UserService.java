@@ -1,9 +1,15 @@
 package com.example.login.domain.service;
 
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.login.domain.model.User;
@@ -86,6 +92,12 @@ public class UserService {
 		return result;
 	}
 	
+	/**
+	 * 1件削除
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	public boolean deleteOne(String userId) {
 		
 		// 1件削除
@@ -99,5 +111,37 @@ public class UserService {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * CSV出力
+	 * 
+	 * @throws DataAccessException
+	 */
+	public void userCsvOut() throws DataAccessException {
+		
+		// CSV出力
+		dao.userCsvOut();
+	}
+	
+	/**
+	 * サーバーに保存されているファイルを取得して、byte配列に変換
+	 * 
+	 * @param fileName
+	 * @return
+	 * @throws IOException
+	 */
+	public byte[] getFile(String fileName) throws IOException {
+		
+		// ファイルシステム(デフォルト)の取得
+		FileSystem fs = FileSystems.getDefault();
+		
+		// ファイルの取得
+		Path p = fs.getPath(fileName);
+		
+		// ファイルをbyte配列に変換
+		byte[] bytes = Files.readAllBytes(p);
+		
+		return bytes;
 	}
 }
