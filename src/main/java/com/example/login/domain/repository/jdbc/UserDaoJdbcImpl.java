@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.example.login.domain.model.User;
 import com.example.login.domain.repository.UserDao;
 
-@Repository
+@Repository("UserDaoJdbcImpl")
 public class UserDaoJdbcImpl implements UserDao {
 	
 	@Autowired

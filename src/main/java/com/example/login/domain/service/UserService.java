@@ -3,6 +3,7 @@ package com.example.login.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.login.domain.model.User;
@@ -12,6 +13,7 @@ import com.example.login.domain.repository.UserDao;
 public class UserService {
 
 	@Autowired
+	@Qualifier("UserDaoJdbcImpl2")  // どのBeanを使用するかを指定する(インターフェースを継承したクラスが複数ある場合)
 	UserDao dao;
 	
 	/**
