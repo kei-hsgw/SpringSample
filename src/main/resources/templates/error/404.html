@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 th:text="${status} + '' + ${error}"></h1>
+  <p>これは、404エラーの専用ページです</p>
+  <form th:action="@{/logout}" method="post">
+    <button type="submit" class="btn btn-link">ログイン画面に戻る</button>
+  </form>
+</body>
+
+</html>
