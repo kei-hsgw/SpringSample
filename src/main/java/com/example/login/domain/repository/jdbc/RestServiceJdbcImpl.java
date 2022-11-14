@@ -19,34 +19,70 @@ public class RestServiceJdbcImpl implements RestService {
 	@Qualifier("UserDaoJdbcImpl")
 	UserDao dao;
 
+	/**
+	 * 1件登録用
+	 * 
+	 */
 	@Override
 	public boolean insert(User user) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		
+		int result = dao.insertOne(user);
+		
+		if (result == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
+	/**
+	 * 1件検索用
+	 * 
+	 */
 	@Override
 	public User selectOne(String userId) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return dao.selectOne(userId);
 	}
 
+	/**
+	 * 全件検索用
+	 * 
+	 */
 	@Override
 	public List<User> selectMany() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return dao.selectMany();
 	}
 
+	/**
+	 * 1件更新用
+	 * 
+	 */
 	@Override
 	public boolean update(User user) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		
+		int result = dao.updateOne(user);
+		
+		if (result == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
+	/**
+	 * 1件削除用
+	 * 
+	 */
 	@Override
 	public boolean delete(String userId) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		
+		int result = dao.deleteOne(userId);
+		
+		if (result == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
