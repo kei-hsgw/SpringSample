@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 @Configuration
@@ -55,6 +56,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.usernameParameter("userId") // ログインページのユーザーID
 		.passwordParameter("password") // ログインページのパスワード
 		.defaultSuccessUrl("/home", true); // ログイン成功時の遷移先
+		
+		// ログアウト処理
+		http.logout()
+//		.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Getメソッドの際に必要
+		.logoutUrl("/logout")
+		.logoutSuccessUrl("/login");
 		
 		// CSRF対策を無効に設定(一時的)
 		http.csrf().disable();
