@@ -13,7 +13,7 @@ import com.example.login.domain.repository.UserDao;
 public class UserService {
 
 	@Autowired
-	@Qualifier("UserDaoJdbcImpl3")  // どのBeanを使用するかを指定する(インターフェースを継承したクラスが複数ある場合)
+	@Qualifier("UserDaoJdbcImpl4")  // どのBeanを使用するかを指定する(インターフェースを継承したクラスが複数ある場合)
 	UserDao dao;
 	
 	/**
