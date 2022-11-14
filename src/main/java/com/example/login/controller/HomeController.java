@@ -161,4 +161,13 @@ public class HomeController {
 		// sample.csvを戻す
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
+	
+	@GetMapping("/admin")
+	public String getAdmin(Model model) {
+		
+		// contents部分にユーザー詳細を表示するための文字列を登録
+		model.addAttribute("contents", "login/admin :: admin_contents");
+		
+		return "login/homeLayout";
+	}
 }
